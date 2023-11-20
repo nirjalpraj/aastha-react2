@@ -5,80 +5,61 @@ import Footer from "../components/Footer";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import { CardActions, CardMedia, Button, Box, Typography } from "@mui/material";
+import { gridData } from "../constants/galleryData";
 
 const Gallery = () => {
   return (
-    <div>
+    <Box>
       <Header />
-      <Box style={{ padding: 35, background: "#FFE77AFF" }}>
-        <Typography variant="h3" color="#303132" textAlign="center">
-          Gallery
-        </Typography>
-      </Box>
-      <Grid container>
-        <Grid item xs={1} />
-        <Grid item xs={9}>
-          <GridFolder />
-        </Grid>
+      <Grid container item justifyContent={"center"} alignItems={"center"}>
+        <Box
+          padding={1}
+          borderRadius={3}
+          backgroundColor={"#2C5F2DFF"}
+          marginTop={5}
+          maxWidth={200}
+        >
+          <Typography variant="h3" color={"white"} textAlign={"center"}>
+            Gallery
+          </Typography>
+        </Box>
+      </Grid>
+      <Grid
+        container
+        spacing={4}
+        justifyContent={"center"}
+        alignItems={"center"}
+        marginTop={3}
+      >
+        {gridData.map((item) => (
+          <Grid item>
+            <Card sx={{ width: 330, borderRadius: 2 }}>
+              <CardMedia
+                component="img"
+                height="250"
+                image={item.img}
+                alt="green iguana"
+              />
+              {/* <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {item.title}
+                </Typography>
+              </CardContent> */}
+              <CardActions sx={{ background: "#2C5F2DFF" }}>
+                <Button size="small">
+                  <Typography color={"white"} variant="subtitle2">
+                    {item.title}
+                  </Typography>
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
       </Grid>
 
       <Footer />
-    </div>
+    </Box>
   );
 };
 
 export default Gallery;
-
-const GridFolder = () => {
-  return (
-    <Grid container spacing={4} padding={2.5}>
-      {itemData.map((item) => (
-        <Grid item>
-          <Card sx={{ width: 345 }}>
-            <CardMedia
-              component="img"
-              height="250"
-              image={item.img}
-              alt="green iguana"
-            />
-            {/* <CardContent>
-                  <Typography gutterBottom variant="h5" component="div">
-                    {item.title}
-                  </Typography>
-                </CardContent> */}
-            <CardActions>
-              <Button size="small">{item.title}</Button>
-            </CardActions>
-          </Card>
-        </Grid>
-      ))}
-    </Grid>
-  );
-};
-
-const itemData = [
-  {
-    img: "https://source.unsplash.com/random/200*300/?breakfast",
-    title: "Sweets Training",
-  },
-  {
-    img: "https://source.unsplash.com/random/200*300/?burger",
-    title: "6th Annual General Meeting",
-  },
-  {
-    img: "https://source.unsplash.com/random/?camera",
-    title: "Handicrafts Training",
-  },
-  {
-    img: "https://source.unsplash.com/random/?coffee",
-    title: "Plumber Training",
-  },
-  {
-    img: "https://source.unsplash.com/random/?hats",
-    title: "5th Annual General Meeting",
-  },
-  {
-    img: "https://source.unsplash.com/random/?mango",
-    title: "Kalinchowk Tour",
-  },
-];
